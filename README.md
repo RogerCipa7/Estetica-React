@@ -1,72 +1,286 @@
-# ✨ GlowBook - Centro de Estética & Gestión de Citas
+<div align="center">
 
-GlowBook es una plataforma premium diseñada para centros de estética que combina una experiencia de usuario sofisticada con una potente herramienta administrativa. Permite a los clientes reservar servicios en línea y a los administradores gestionar el negocio con datos en tiempo real.
+<br/>
+
+```
+╔═══════════════════════════════════════════╗
+║                                           ║
+║        ✦  G L O W B O O K  ✦             ║
+║                                           ║
+║   Centro de Estética & Gestión de Citas   ║
+║                                           ║
+╚═══════════════════════════════════════════╝
+```
+
+[![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com/)
+
+<br/>
+
+> **Plataforma llave en mano** que eleva la imagen de un centro de estética  
+> y profesionaliza su operación diaria — desde la reserva hasta el análisis del negocio.
+
+<br/>
 
 ![GlowBook Preview](https://images.unsplash.com/photo-1560750588-73207b1ef5b8?auto=format&fit=crop&q=80&w=1200&h=400)
 
+</div>
+
+---
+
+## ✦ ¿Qué es GlowBook?
+
+**GlowBook** es una solución integral para centros de estética profesional con dos objetivos claros:
+
+| 👤 Para el Cliente | 🏢 Para el Negocio |
+|---|---|
+| Experiencia de marca premium | Gestión centralizada de citas |
+| Reservas autónomas 24/7 | Dashboard de analíticas en tiempo real |
+| Catálogo de servicios detallado | Prevención automática de cruces de horarios |
+| Confirmación instantánea | Control de ingresos estimados |
+
+---
+
 ## 🚀 Características Principales
 
-### Para Clientes
-- **✨ Interfaz Premium**: Diseño moderno con efectos de vidrio (glassmorphism) y tipografía elegante.
-- **📅 Reservas Inteligentes**: Selección de múltiples servicios, validación automática de horarios disponibles y confirmación instantánea.
-- **💄 Catálogo de Servicios**: Navegación por categorías con detalles de precios, duración y descripción.
-- **📱 100% Responsivo**: Experiencia fluida tanto en dispositivos móviles como en computadoras.
+### ✨ Experiencia del Cliente (Frontend Público)
 
-### Para Administradores
-- **📊 Dashboard de Analíticas**: Visualización de ingresos estimados, total de citas y tasas de cancelación.
-- **🔐 Gestión de Citas**: Panel completo para monitorear, confirmar o cancelar reservas.
-- **🔑 Acceso Seguro**: Sistema de autenticación con protección de rutas y sesión local.
+- **🎨 Diseño Visual Premium**  
+  Tipografía clásica (*Cormorant Garamond*) combinada con fuentes modernas (*DM Sans*). Efectos **Glassmorphism** para una estética de lujo refinada.
+
+- **💄 Catálogo de Servicios Dinámico**  
+  Servicios organizados por categorías con precio, duración y descripción detallada.
+
+- **📅 Sistema de Reservas Inteligente**  
+  Selección de múltiples servicios, elección de fecha/hora, y **validación en tiempo real** que consulta la base de datos antes de confirmar para evitar solapamientos.
+
+- **📱 100% Responsivo**  
+  Experiencia fluida en móviles, tablets y escritorio.
+
+---
+
+### 🔐 Panel Administrativo
+
+- **🏠 Dashboard de Analíticas**
+  - Total de reservas activas
+  - Ingresos estimados (suma automática de servicios)
+  - Tasa de cancelación
+  - Historial completo filtrable
+
+- **📋 Gestión de Citas**  
+  Vista completa de reservas con cambio de estado en un clic:
+
+  ```
+  [ RECIBIDA ] → [ REALIZADA ]
+                → [ NO ASISTIÓ ]
+                → [ CANCELADA ]
+  ```
+
+- **🔑 Acceso Seguro**  
+  Login con estética premium, protección de rutas y sesión local. Incluye acceso rápido para demos.
+
+---
 
 ## 🛠️ Stack Tecnológico
 
-- **Core**: [React.ts](https://reactjs.org/) (Vite)
-- **Estilos**: [Tailwind CSS](https://tailwindcss.com/)
-- **Base de Datos**: [Supabase](https://supabase.com/) (PostgreSQL)
-- **Iconografía**: [Lucide React](https://lucide.dev/)
-- **Routing**: [React Router v6](https://reactrouter.com/)
-
-## 📂 Estructura del Proyecto
-
-```text
-src/
-├── components/   # Componentes de layout (Header, Footer)
-├── data/         # Datos estáticos (Catálogo de servicios)
-├── pages/        # Páginas principales (Home, Admin, Login, Contacto)
-├── sections/     # Secciones modulares de las páginas
-├── utils/        # Utilidades (Cliente Supabase, Lógica de reservas)
-└── App.tsx       # Configuración de rutas
+```
+┌─────────────────────────────────────────────────────┐
+│                    GLOWBOOK STACK                   │
+├───────────────────┬─────────────────────────────────┤
+│  Frontend Core    │  React 18 + TypeScript (Vite)   │
+│  Estilos          │  Tailwind CSS + Glassmorphism    │
+│  Routing          │  React Router v6                 │
+│  Iconografía      │  Lucide React                    │
+│  Base de Datos    │  Supabase (PostgreSQL)           │
+│  Auth / Seguridad │  RLS Policies + .env vars        │
+│  Fuentes          │  Cormorant Garamond + DM Sans    │
+└───────────────────┴─────────────────────────────────┘
 ```
 
-## ⚙️ Configuración y Ejecución
+| Tecnología | Versión | Uso |
+|---|---|---|
+| ⚛️ React | 18+ | UI y componentes |
+| 🔷 TypeScript | 5+ | Tipado estático |
+| ⚡ Vite | 5+ | Bundler y dev server |
+| 🎨 Tailwind CSS | 3+ | Utilidades de estilos |
+| 🟢 Supabase | Latest | Base de datos y API |
+| 🧭 React Router | v6 | Navegación SPA |
+| 🔲 Lucide React | Latest | Sistema de iconos |
 
-1. **Clonar el repositorio**:
-   ```bash
-   git clone https://github.com/usuario/glowbook.git
-   cd glowbook
-   ```
-
-2. **Instalar dependencias**:
-   ```bash
-   npm install
-   ```
-
-3. **Variables de Entorno**:
-   Crea un archivo `.env` en la raíz con tus credenciales de Supabase:
-   ```env
-   VITE_SUPABASE_URL=tu_url_de_supabase
-   VITE_SUPABASE_ANON_KEY=tu_anon_key
-   ```
-
-4. **Ejecutar en desarrollo**:
-   ```bash
-   npm run dev
-   ```
+---
 
 ## 🗄️ Base de Datos
 
-El proyecto utiliza dos tablas principales en Supabase:
-- `bookings`: Información del cliente y metadatos de la cita.
-- `booking_services`: Relación de servicios asociados a cada cita.
+El proyecto utiliza **dos tablas principales** en Supabase (PostgreSQL):
+
+### `bookings` — Reservas
+```sql
+create table bookings (
+    id            text        primary key,
+    client_name   text        not null,
+    phone         text        not null,
+    total_price   bigint      not null,
+    date          date        not null,
+    time          text        not null,
+    status        text        default 'recibida'
+                              check (status in ('recibida','realizada','no-asistio','cancelada')),
+    created_at    timestamptz default now() not null
+);
+```
+
+### `booking_services` — Servicios por Reserva
+```sql
+create table booking_services (
+    id            bigint  generated by default as identity primary key,
+    booking_id    text    references bookings(id) on delete cascade,
+    service_id    text    not null,
+    service_name  text    not null,
+    service_price bigint  not null
+);
+```
+
+### 🔒 Políticas de Seguridad (RLS)
+```sql
+-- Inserción pública (clientes crean reservas desde la web)
+create policy "Cualquiera puede crear reservas"
+  on bookings for insert with check (true);
+
+-- Lectura total (Admin dashboard)
+create policy "Acceso total para lectura"
+  on bookings for select using (true);
+```
+
+> **Nota:** Row Level Security está habilitado en ambas tablas para máxima seguridad.
 
 ---
-Desarrollado con ❤️ para centros de estética que buscan brillar.
+
+## 📂 Estructura del Proyecto
+
+```
+glowbook/
+├── 📁 public/
+│   └── favicon.ico
+├── 📁 src/
+│   ├── 📁 components/       # Layout global (Header, Footer)
+│   ├── 📁 data/             # Catálogo estático de servicios
+│   ├── 📁 pages/            # Páginas principales
+│   │   ├── Home.tsx
+│   │   ├── Contacto.tsx
+│   │   ├── Admin.tsx
+│   │   └── Login.tsx
+│   ├── 📁 sections/         # Secciones modulares de cada página
+│   ├── 📁 utils/            # Cliente Supabase + lógica de reservas
+│   └── App.tsx              # Configuración de rutas
+├── .env                     # Variables de entorno (no commitear)
+├── .env.example             # Plantilla de variables
+├── tailwind.config.ts
+├── vite.config.ts
+└── package.json
+```
+
+---
+
+## ⚙️ Instalación y Configuración
+
+### 1. Clonar el repositorio
+
+```bash
+git clone https://github.com/RogerCipa7/Estetica-React.git
+cd Estetica-React
+```
+
+### 2. Instalar dependencias
+
+```bash
+npm install
+```
+
+### 3. Configurar variables de entorno
+
+Crea un archivo `.env` en la raíz del proyecto:
+
+```env
+VITE_SUPABASE_URL=tu_url_de_supabase
+VITE_SUPABASE_ANON_KEY=tu_anon_key_de_supabase
+```
+
+> ⚠️ Nunca subas el archivo `.env` al repositorio. Está incluido en `.gitignore`.
+
+### 4. Configurar la base de datos
+
+Ejecuta el script SQL en el **Editor SQL de Supabase** (Project > SQL Editor):
+
+```bash
+# El script está disponible en: /database/schema.sql
+```
+
+### 5. Ejecutar en desarrollo
+
+```bash
+npm run dev
+```
+
+Abre [http://localhost:5173](http://localhost:5173) en tu navegador.
+
+### 6. Build para producción
+
+```bash
+npm run build
+npm run preview   # Para previsualizar el build
+```
+
+---
+
+## 🔑 Acceso al Panel Admin
+
+Para la demo, utiliza las credenciales rápidas disponibles en la pantalla de Login.  
+El panel se encuentra en la ruta `/admin`.
+
+---
+
+## 💡 Decisiones Técnicas Destacadas
+
+| Decisión | Razón |
+|---|---|
+| **Supabase en lugar de localStorage** | Persistencia real entre sesiones y dispositivos |
+| **Validación de horarios en tiempo real** | Evita doble reserva sin necesidad de servidor propio |
+| **Tabla relacional `booking_services`** | Soporte nativo para múltiples servicios por cita |
+| **Variables de entorno** | Credenciales seguras, nunca expuestas en el código |
+| **React Router v6** | Protección de rutas para el panel administrativo |
+
+---
+
+## 📈 Roadmap
+
+- [ ] Autenticación real con Supabase Auth
+- [ ] Notificaciones por WhatsApp/Email al confirmar reserva
+- [ ] Soporte multi-profesional (asignar citas a empleados)
+- [ ] Vista de calendario (semanal/mensual)
+- [ ] Módulo de fidelización y historial por cliente
+
+---
+
+## 👤 Autor
+
+<div align="center">
+
+**Roger Cipagauta**  
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Roger_Cipagauta-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/rogercipagauta)
+[![GitHub](https://img.shields.io/badge/GitHub-RogerCipa7-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/RogerCipa7)
+
+</div>
+
+---
+
+<div align="center">
+
+
+
+```
+✦ GlowBook — Donde la belleza se encuentra con la tecnología ✦
+```
+
+</div>
