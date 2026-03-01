@@ -174,7 +174,7 @@ glowbook/
 │   ├── 📁 sections/         # Secciones modulares de cada página
 │   ├── 📁 utils/            # Cliente Supabase + lógica de reservas
 │   └── App.tsx              # Configuración de rutas
-├── .env                     # Variables de entorno (no commitear)
+├── .env                     # Variables de entorno (estan por ejemplo para que vean funcionalidad )
 ├── .env.example             # Plantilla de variables
 ├── tailwind.config.ts
 ├── vite.config.ts
