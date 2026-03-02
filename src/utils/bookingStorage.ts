@@ -120,11 +120,11 @@ export const updateBookingStatus = async (id: string, status: Booking['status'])
 
     if (error) {
         console.error('Error updating status:', error);
+        throw error;
     }
 };
 
-export const getAnalytics = async () => {
-    const bookings = await getBookings();
+export const calculateAnalytics = (bookings: Booking[]) => {
     const total = bookings.length;
     const realizados = bookings.filter((b: Booking) => b.status === 'realizada').length;
     const noAsistio = bookings.filter((b: Booking) => b.status === 'no-asistio').length;
@@ -147,6 +147,11 @@ export const getAnalytics = async () => {
         ingresosEstimados,
         asistenciaRate: (total - canceladas) > 0 ? (realizados / (total - canceladas)) * 100 : 0
     };
+};
+
+export const getAnalytics = async () => {
+    const bookings = await getBookings();
+    return calculateAnalytics(bookings);
 };
 
 export const autoCleanupBookings = () => {
