@@ -75,9 +75,15 @@ const Admin = () => {
         }
     };
 
+    const [expandedId, setExpandedId] = useState<string | null>(null);
+
     const handleLogout = () => {
         localStorage.removeItem('glowbook_session');
         navigate('/login');
+    };
+
+    const toggleExpand = (id: string) => {
+        setExpandedId(expandedId === id ? null : id);
     };
 
     const filteredBookings = bookings.filter(b =>
@@ -141,7 +147,7 @@ const Admin = () => {
                     ))}
                 </div>
 
-                {/* Bookings Table */}
+                {/* Bookings Container */}
                 <div className="bg-white rounded-[2.5rem] shadow-sm border border-slate-100 overflow-hidden">
                     <div className="p-8 border-b border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-4">
                         <div className="flex items-center gap-3">
@@ -159,7 +165,101 @@ const Admin = () => {
                             />
                         </div>
                     </div>
-                    <div className="overflow-x-auto">
+
+                    {/* Moblie View (Card List) */}
+                    <div className="block md:hidden divide-y divide-slate-50">
+                        {filteredBookings.length > 0 ? filteredBookings.map((booking) => (
+                            <div key={booking.id} className="p-6 space-y-4">
+                                <div
+                                    className="flex justify-between items-start cursor-pointer group"
+                                    onClick={() => toggleExpand(booking.id)}
+                                >
+                                    <div className="space-y-1">
+                                        <div className="font-black text-slate-900 text-lg leading-tight group-hover:text-pink-500 transition-colors">
+                                            {booking.clientName}
+                                        </div>
+                                        <div className="text-xs text-slate-500 font-bold">{booking.phone}</div>
+                                    </div>
+                                    <span className={`inline-flex items-center px-3 py-1 rounded-full text-[9px] font-black uppercase tracking-widest ${booking.status === 'realizada' ? 'bg-green-50 text-green-600 border border-green-100' :
+                                        booking.status === 'no-asistio' ? 'bg-red-50 text-red-600 border border-red-100' :
+                                            booking.status === 'cancelada' ? 'bg-slate-50 text-slate-400 border border-slate-100' :
+                                                'bg-orange-50 text-orange-600 border border-orange-100'
+                                        }`}>
+                                        {booking.status.replace('-', ' ')}
+                                    </span>
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-4 pt-2">
+                                    <div className="space-y-1.5 p-3 bg-slate-50 rounded-2xl">
+                                        <p className="text-[8px] font-black text-slate-400 uppercase tracking-widest">Cita programada</p>
+                                        <div className="flex items-center gap-2 text-slate-700 font-bold text-xs">
+                                            <Calendar className="w-3 h-3 text-pink-400" />
+                                            {booking.date}
+                                        </div>
+                                        <div className="flex items-center gap-2 text-slate-500 font-medium text-xs">
+                                            <Clock className="w-3 h-3 text-slate-300" />
+                                            {booking.time}
+                                        </div>
+                                    </div>
+                                    <div className="space-y-1.5 p-3 bg-pink-50/30 rounded-2xl border border-pink-100/50">
+                                        <p className="text-[8px] font-black text-pink-400 uppercase tracking-widest">Inversión Total</p>
+                                        <div className="text-base font-black text-pink-700 pt-0.5">
+                                            {new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(booking.totalPrice)}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Expandable Actions Area */}
+                                <div className={`overflow-hidden transition-all duration-300 ease-in-out ${expandedId === booking.id ? 'max-h-40 opacity-100 pt-4' : 'max-h-0 opacity-0'}`}>
+                                    <div className="flex justify-between items-center bg-slate-50 p-4 rounded-3xl border border-slate-100">
+                                        <p className="text-[10px] font-black text-slate-900 uppercase tracking-widest ml-1">¿Cita finalizada?</p>
+                                        <div className="flex gap-3">
+                                            {processingId === booking.id ? (
+                                                <div className="w-8 h-8 border-2 border-pink-100 border-t-pink-500 rounded-full animate-spin" />
+                                            ) : (
+                                                <>
+                                                    <button
+                                                        onClick={() => handleUpdateStatus(booking.id, 'realizada')}
+                                                        className={`p-3 rounded-2xl transition-all active:scale-95 ${booking.status === 'realizada' ? 'bg-green-500 text-white' : 'bg-white text-green-600 shadow-sm border border-slate-100'}`}
+                                                    >
+                                                        <CheckCircle className="w-5 h-5" />
+                                                    </button>
+                                                    <button
+                                                        onClick={() => handleUpdateStatus(booking.id, 'no-asistio')}
+                                                        className={`p-3 rounded-2xl transition-all active:scale-95 ${booking.status === 'no-asistio' ? 'bg-red-500 text-white' : 'bg-white text-red-600 shadow-sm border border-slate-100'}`}
+                                                    >
+                                                        <XCircle className="w-5 h-5" />
+                                                    </button>
+                                                    <button
+                                                        onClick={() => handleUpdateStatus(booking.id, 'cancelada')}
+                                                        className={`p-3 rounded-2xl transition-all active:scale-95 ${booking.status === 'cancelada' ? 'bg-slate-400 text-white' : 'bg-white text-slate-400 shadow-sm border border-slate-100'}`}
+                                                    >
+                                                        <ArrowRight className="w-5 h-5" />
+                                                    </button>
+                                                </>
+                                            )}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Toggle Hint */}
+                                <button
+                                    onClick={() => toggleExpand(booking.id)}
+                                    className="w-full text-center py-1 text-slate-300 hover:text-pink-300 transition-colors"
+                                >
+                                    <div className={`w-8 h-1 bg-slate-200 mx-auto rounded-full transition-all ${expandedId === booking.id ? 'rotate-180 opacity-0' : 'rotate-0'}`} />
+                                </button>
+                            </div>
+                        )) : (
+                            <div className="px-8 py-24 text-center">
+                                <Search className="w-10 h-10 text-slate-200 mx-auto mb-4" />
+                                <p className="font-bold text-slate-400 text-lg">No se encontraron citas</p>
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Desktop View (Table) */}
+                    <div className="hidden md:block overflow-x-auto">
                         <table className="w-full text-left">
                             <thead>
                                 <tr className="bg-slate-50/50 text-slate-400 text-[10px] font-black uppercase tracking-[0.2em]">
@@ -269,6 +369,7 @@ const Admin = () => {
                             </tbody>
                         </table>
                     </div>
+
                     <div className="p-8 bg-slate-50/30 border-t border-slate-50 flex items-center justify-between">
                         <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Registro de Actividad</p>
                         <p className="text-xs font-bold text-slate-500">Mostrando {filteredBookings.length} resultados dinámicos</p>
